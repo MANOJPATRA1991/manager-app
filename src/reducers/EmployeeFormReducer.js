@@ -6,9 +6,9 @@ import {
  * Initial state of the reducer
  */
 const INITIAL_STATE = {
-    name: '',
-    phone: '',
-    shift: ''
+      name: '',
+     phone: '',
+     shift: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
