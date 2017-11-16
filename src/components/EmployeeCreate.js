@@ -55,9 +55,9 @@ class EmployeeCreate extends Component {
                 <CardSection style={{ flexDirection: 'column' }}>
                     <Text style={styles.pickerLabelStyle}>Shift</Text>
                     <Picker
-                        style={styles.pickerStyle}
-                        selectedValue={this.props.shift}
-                        onValueChange={(value) => this.props.employeeUpdate({ prop: 'shift', value })}
+                    style={styles.pickerStyle}
+                    selectedValue={this.props.shift}
+                    onValueChange={(value) => this.props.employeeUpdate({ prop: 'shift', value })}
                     >
                         {this.renderPickerDays()}
                     </Picker>
@@ -65,7 +65,7 @@ class EmployeeCreate extends Component {
 
                 <CardSection>
                     <Button
-                        onPress={this.onButtonPress()}>
+                    onPress={this.onButtonPress.bind(this)}>
                         Create
                     </Button>
                 </CardSection>
