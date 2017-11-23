@@ -10,7 +10,7 @@ import Router from './Router';
 
 class App extends Component {
     componentWillMount() {
-        // Initialize Firebase
+        // Initialize Firebase on component mount
         const config = {
             apiKey: "AIzaSyAP9wD7lmwV91C6SWpAsPn7BL8FiFjTobk",
             authDomain: "manager-751ee.firebaseapp.com",
@@ -21,7 +21,9 @@ class App extends Component {
         };
         firebase.initializeApp(config);
     }
+
     render() {
+        // Create store
         const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
         return (
             <Provider store={store}>
