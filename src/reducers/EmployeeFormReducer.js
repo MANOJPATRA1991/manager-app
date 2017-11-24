@@ -2,7 +2,8 @@ import {
     EMPLOYEE_UPDATE,
     EMPLOYEE_CREATE,
     EMPLOYEE_SAVE_SUCCESS,
-    EMPLOYEE_CLEAR
+    EMPLOYEE_CLEAR,
+    EMPLOYEE_DELETE_SUCCESS
 } from '../actions/types';
 
 /**
@@ -32,6 +33,9 @@ export default (state = INITIAL_STATE, action) => {
             return INITIAL_STATE;
         // Clear the employee form
         case EMPLOYEE_CLEAR:
+            return INITIAL_STATE;
+        // On successful deletion of an employee
+        case EMPLOYEE_DELETE_SUCCESS:
             return INITIAL_STATE;
         default:
             return state;

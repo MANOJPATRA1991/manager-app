@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
 import { Card, CardSection, Button, Confirm } from './common';
-import { employeeUpdate, employeeSave } from '../actions';
+import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
 import EmployeeForm from './EmployeeForm';
 
 /**
@@ -48,6 +48,24 @@ class EmployeeEdit extends Component {
         });
     }
 
+    /**
+     * Called when confirm delete an employee
+     */
+    onAccept() {
+        const { uid } = this.props.employee;
+        this.props.employeeDelete({ uid });
+        setTimeout(() => {
+            this.toggleModal();
+        }, 2000)
+    }
+
+    /**
+     * Called to cancel a delete operation
+     */
+    onDecline() {
+        this.toggleModal();
+    }
+
     render() {
         return (
             <Card>
@@ -80,8 +98,10 @@ class EmployeeEdit extends Component {
 
                 <Confirm 
                 visible={this.state.showModal}
+                onAccept={this.onAccept.bind(this)}
+                onDecline={this.onDecline.bind(this)}
                 >
-                    Are you sure you want to delete this employee?
+                    Are you sure you want to fire {this.props.employee.name}?
                 </Confirm>
     
             </Card>
@@ -98,7 +118,7 @@ const mapStateToProps = (state) => {
     return { name, phone, shift };
 };
 
-// Connect EmployeeCreate component to Redux store
+// Connect EmployeeEdit component to Redux store
 export default connect(mapStateToProps, { 
-    employeeUpdate, employeeSave
+    employeeUpdate, employeeSave, employeeDelete
 })(EmployeeEdit);

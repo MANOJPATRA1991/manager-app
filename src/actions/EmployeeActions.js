@@ -5,7 +5,8 @@ import {
     EMPLOYEE_CREATE,
     EMPLOYEES_FETCH_SUCCESS,
     EMPLOYEE_SAVE_SUCCESS,
-    EMPLOYEE_CLEAR
+    EMPLOYEE_CLEAR,
+    EMPLOYEE_DELETE_SUCCESS
 } from './types';
 
 /**
@@ -85,5 +86,24 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
 export const resetForm = () => {
     return {
         type: EMPLOYEE_CLEAR
+    }
+}
+
+/**
+ * Delete an existing employee from the firebase database
+ * @param {Object} : An object with key uid
+ */
+export const employeeDelete = ({ uid }) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`).remove()
+        .then(() => {
+            // Dispatch employee delete action
+            dispatch({
+                type: EMPLOYEE_DELETE_SUCCESS
+            });
+            // Go back to Employee List Scene
+            Actions.employeeList();
+        });
     }
 }
