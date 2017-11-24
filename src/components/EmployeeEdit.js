@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button } from './common';
-import { employeeUpdate } from '../actions';
+import { employeeUpdate, employeeSave } from '../actions';
 import EmployeeForm from './EmployeeForm';
 
 /**
@@ -17,12 +17,12 @@ class EmployeeEdit extends Component {
     }
 
     /**
-     * Creates a new employee and adds to the logged in user's employee list
+     * Update employee and add updated employee details
+     * to the logged in user's employee list
      */
     onButtonPress() {
         const { name, phone, shift } = this.props;
-        // this.props.employeeCreate({ name, phone, shift:  shift || 'Monday' });
-        console.log(name, phone, shift);
+        this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
     }
 
     render() {
@@ -55,5 +55,5 @@ const mapStateToProps = (state) => {
 
 // Connect EmployeeCreate component to Redux store
 export default connect(mapStateToProps, { 
-    employeeUpdate
+    employeeUpdate, employeeSave
 })(EmployeeEdit);

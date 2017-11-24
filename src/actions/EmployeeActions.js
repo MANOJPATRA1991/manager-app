@@ -3,7 +3,8 @@ import { Actions } from 'react-native-router-flux';
 import {
     EMPLOYEE_UPDATE,
     EMPLOYEE_CREATE,
-    EMPLOYEES_FETCH_SUCCESS
+    EMPLOYEES_FETCH_SUCCESS,
+    EMPLOYEE_FORM_CLEAR
 } from './types';
 
 /**
@@ -53,6 +54,26 @@ export const employeesFetch = () => {
                 type: EMPLOYEES_FETCH_SUCCESS,
                 payload: snapshot.val()
             });
+        });
+    };
+};
+
+/**
+ * Update and save existing employee data
+ */
+export const employeeSave = ({ name, phone, shift, uid }) => {
+    // Get current user from firebase authentication
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+        .set({ name, phone, shift })
+        .then(() => {
+            // Dispatch employee create action
+            dispatch({ 
+                type: EMPLOYEE_FORM_CLEAR 
+            });
+            // Go back to Employee List Scene
+            Actions.employeeList();
         });
     };
 };
