@@ -39,6 +39,15 @@ class EmployeeEdit extends Component {
         Communications.text(phone, `Your upcoming shift is on ${shift}`);
     }
 
+    /**
+     * Toggle modal display
+     */
+    toggleModal() {
+        this.setState(previousState => {
+            return { showModal: !previousState.showModal };
+        });
+    }
+
     render() {
         return (
             <Card>
@@ -63,7 +72,7 @@ class EmployeeEdit extends Component {
 
                 <CardSection>
                 
-                    <Button onPress={this.setState({ showModal: !this.state.showModal })}>
+                    <Button onPress={this.toggleModal.bind(this)}>
                         Fire Employee
                     </Button>
 
