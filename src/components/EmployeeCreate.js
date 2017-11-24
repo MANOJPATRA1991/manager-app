@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button } from './common';
-import { employeeCreate } from '../actions';
+import { employeeCreate, resetForm } from '../actions';
 import EmployeeForm from './EmployeeForm';
 
 /**
  * EmployeeCreate component creates a new employee
  */
 class EmployeeCreate extends Component {
+
+    componentWillMount() {
+        // Reset this form on component mount
+        this.props.resetForm();
+    }
 
     /**
      * Creates a new employee and adds to the logged in user's employee list
@@ -47,5 +52,5 @@ const mapStateToProps = (state) => {
 
 // Connect EmployeeCreate component to Redux store
 export default connect(mapStateToProps, { 
-    employeeCreate
+    employeeCreate, resetForm
 })(EmployeeCreate);

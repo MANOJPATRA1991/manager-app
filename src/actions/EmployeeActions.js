@@ -4,7 +4,8 @@ import {
     EMPLOYEE_UPDATE,
     EMPLOYEE_CREATE,
     EMPLOYEES_FETCH_SUCCESS,
-    EMPLOYEE_FORM_CLEAR
+    EMPLOYEE_SAVE_SUCCESS,
+    EMPLOYEE_CLEAR
 } from './types';
 
 /**
@@ -70,10 +71,19 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
         .then(() => {
             // Dispatch employee create action
             dispatch({ 
-                type: EMPLOYEE_FORM_CLEAR 
+                type: EMPLOYEE_SAVE_SUCCESS
             });
             // Go back to Employee List Scene
             Actions.employeeList();
         });
     };
 };
+
+/**
+ * Reset create form
+ */
+export const resetForm = () => {
+    return {
+        type: EMPLOYEE_CLEAR
+    }
+}
