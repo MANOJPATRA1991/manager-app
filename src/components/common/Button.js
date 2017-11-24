@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
+/**
+ * Button Component
+ */
 class Button extends Component {
     render() {
+        // onPress: Function to call on Button Press
         const { onPress } = this.props;
         const { buttonStyles, textStyle } = styles;
         return (
@@ -15,6 +19,9 @@ class Button extends Component {
     }
 }
 
+/**
+ * Default styling for the Button Component
+ */
 const styles = {
     textStyle: {
         alignSelf: 'center',

@@ -1,3 +1,6 @@
+/**
+ * Export components as part of a module
+ */
 export * from './Button';
 export * from './Card';
 export * from './CardSection';

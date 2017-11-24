@@ -3,7 +3,7 @@ import { TextInput, View, Text } from 'react-native';
 
 
 // ES6 object destructuring
-// functional component
+// Input Component (Functional component)
 const Input = ({ secureTextEntry, placeholder, label, value, onChangeText }) => {
     const { inputStyle, labelStyle, containerStyle } = styles;
     return (
@@ -22,6 +22,9 @@ const Input = ({ secureTextEntry, placeholder, label, value, onChangeText }) => 
     );
 };
 
+/**
+ * Default Styling for the Input Component
+ */
 const styles = {
     inputStyle: {
         color: '#000',

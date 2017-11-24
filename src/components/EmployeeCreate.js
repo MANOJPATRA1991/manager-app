@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button } from './common';
 import { employeeUpdate, employeeCreate } from '../actions';
 
-
+/**
+ * EmployeeCreate component creates a new employee
+ */
 class EmployeeCreate extends Component {
     /**
      * Render days of week in picker component
@@ -19,11 +21,15 @@ class EmployeeCreate extends Component {
             { id: 5, label: 'Friday' },
             { id: 6, label: 'Saturday' }
         ];
+
         return daysOfTheWeek.map((day) => 
             <Picker.Item key={day.id} label={day.label} value={day.label} />
         );
     }
 
+    /**
+     * Creates a new employee and adds to the logged in user's employee list
+     */
     onButtonPress() {
         const { name, phone, shift } = this.props;
         this.props.employeeCreate({ name, phone, shift:  shift || 'Monday' });
@@ -74,6 +80,9 @@ class EmployeeCreate extends Component {
     }
 }
 
+/**
+ * Default styling for the EmployeeCreate component
+ */
 const styles = {
     pickerStyle: {
         margin: 10
@@ -84,11 +93,16 @@ const styles = {
     }
 };
 
+/**
+ * Maps state to this components props object
+ * @param {Object} state : State of the store
+ */
 const mapStateToProps = (state) => {
     const { name, phone, shift } = state.employeeForm;
     return { name, phone, shift };
 };
 
+// Connect EmployeeCreate component to Redux store
 export default connect(mapStateToProps, { 
     employeeUpdate,
     employeeCreate

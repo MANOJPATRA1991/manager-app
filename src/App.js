@@ -23,7 +23,7 @@ class App extends Component {
     }
 
     render() {
-        // Create store
+        // Create Redux store
         const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
         return (
             <Provider store={store}>

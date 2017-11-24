@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 
+/**
+ * Card Component
+ */
 class Card extends Component {
     render() {
         const { containerStyle } = styles;
@@ -12,6 +15,9 @@ class Card extends Component {
     }
 }
 
+/**
+ * Default styling for the Card Component
+ */
 const styles = StyleSheet.create({
     containerStyle: {
         borderWidth: 1,

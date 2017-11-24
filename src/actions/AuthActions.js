@@ -11,7 +11,7 @@ import {
 
 /**
  * Returns action to update state on email change
- * @param {*} text Email input
+ * @param {String} text : Email input
  * @returns Action
  */
 export const emailChanged = (text) => {
@@ -23,7 +23,7 @@ export const emailChanged = (text) => {
 
 /**
  * Returns action to update state on password change
- * @param {*} text Password input
+ * @param {String} text : Password input
  * @returns Action
  */
 export const passwordChanged = (text) => {
@@ -35,7 +35,7 @@ export const passwordChanged = (text) => {
 
 /**
  * Logs in user to firebase
- * @param {*} param0 An object with two keys: email and password
+ * @param {Object} : An object with two keys: email and password
  */
 export const loginUser = ({ email, password }) => {
     return (dispatch) => {
@@ -64,8 +64,8 @@ export const loginUser = ({ email, password }) => {
 
 /**
  * Dispatch new Action with user data on login successs
- * @param {*} dispatch  
- * @param {*} user 
+ * @param {Object} dispatch  
+ * @param {Object} user 
  */
 const loginUserSuccess = (dispatch, user) => {
     dispatch({
@@ -78,8 +78,8 @@ const loginUserSuccess = (dispatch, user) => {
 
 /**
  * Dispatch new Action stating login failure
- * @param {*} dispatch  
- * @param {*} user 
+ * @param {Object} dispatch  
+ * @param {Object} user 
  */
 const loginUserFail = (dispatch) => {
     dispatch({ type: LOGIN_USER_FAIL });

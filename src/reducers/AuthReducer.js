@@ -6,6 +6,9 @@ import {
     LOGIN_USER
 } from '../actions/types';
 
+/**
+ * Initial state of the reducer
+ */
 const INITIAL_STATE = {
     email: '',
     password: '',
@@ -14,18 +17,26 @@ const INITIAL_STATE = {
     loading: false
 };
 
+/**
+ * Auth reducer
+ */
 export default (state=INITIAL_STATE, action) => {
     switch(action.type) {
+        // Change in email input field
         case EMAIL_CHANGED:
             return { ...state, email: action.payload };
+        // Change in password input field
         case PASSWORD_CHANGED:
             return { ...state, password: action.payload };
+        // During login process
         case LOGIN_USER:
             return { ...state, loading: true, error: '' };
+        // On user login success
         case LOGIN_USER_SUCCESS:
             return { ...state, ...INITIAL_STATE, 
                 user: action.payload
             };
+        // On user login fail
         case LOGIN_USER_FAIL:
             return { ...state, 
                 error: 'Authentication failed',

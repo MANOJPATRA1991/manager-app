@@ -4,6 +4,9 @@ import LoginFrom from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 
+/**
+ * Functional Router Component
+ */
 const RouterComponent = () => {
     return (
         <Router>
@@ -19,7 +22,6 @@ const RouterComponent = () => {
                         component={EmployeeList} 
                         title="Employees"
                         rightTitle="Add"
-                        onLeft={() => null}
                         onRight={() => Actions.employeeCreate()}  />
                     
                     <Scene key="employeeCreate"

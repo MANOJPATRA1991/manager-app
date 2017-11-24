@@ -1,6 +1,10 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 
+/**
+ * Spinner Component
+ * @param {Object} param0 : An object containing a size property for the spinner size 
+ */
 const Spinner = ({ size }) => {
     return (
         <View style={styles.spinnerStyle}>
@@ -9,6 +13,9 @@ const Spinner = ({ size }) => {
     );
 };
 
+/**
+ * Default styling for the Spinner Component
+ */
 const styles = {
     spinnerStyle: {
         flex: 1,

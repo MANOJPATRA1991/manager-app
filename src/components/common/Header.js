@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-// Make the Header component
+/**
+ * Header component
+ */ 
 class Header extends Component {
     render() {
         // destructuring to remove duplicate references to styles object
@@ -16,6 +18,9 @@ class Header extends Component {
     }
 }
 
+/**
+ * Default styling for the Header Component
+ */
 const styles = StyleSheet.create({
     viewStyle: {
         backgroundColor: '#F8F8F8',

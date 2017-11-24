@@ -8,7 +8,7 @@ import {
 
 /**
  * Updates employee data in the state
- * @param {*} param0 An object with prop and value keys
+ * @param {Object} : An object with prop and value keys
  * @returns Action object
  */
 export const employeeUpdate = ({ prop, value }) => {
@@ -20,7 +20,7 @@ export const employeeUpdate = ({ prop, value }) => {
 
 /**
  * Create and save an employee data in the database
- * @param {*}  param0 An object with name, phone and shift keys
+ * @param {Object} : An object with name, phone and shift keys
  */
 export const employeeCreate = ({ name, phone, shift }) => {
     // Get current user from firebase authentication
@@ -35,7 +35,7 @@ export const employeeCreate = ({ name, phone, shift }) => {
                 type: EMPLOYEE_CREATE 
             });
             // Go back to employee list page
-            Actions.employeeList({ type: 'reset' });
+            Actions.employeeList();
         });
     };
 };
