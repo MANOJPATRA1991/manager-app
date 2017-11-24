@@ -12,7 +12,7 @@ class ListItem extends Component {
      * Called on pressing each list item
      */
     onRowPress() {
-        Actions.employeeCreate({ employee: this.props.employee });
+        Actions.employeeEdit({ employee: this.props.employee });
     }
 
     render() {
