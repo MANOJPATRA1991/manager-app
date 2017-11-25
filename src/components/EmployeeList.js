@@ -1,14 +1,17 @@
 import _ from 'lodash';
 import React,  { Component } from 'react';
 import { connect } from 'react-redux';
-import { FlatList } from 'react-native';
+import { FlatList, View, Text } from 'react-native';
 import { employeesFetch } from '../actions';
 import ListItem from './ListItem';
+import { CardSection, Card } from './common';
 
 /**
  * EmployeeList Component displays the list of employees for logged in user
  */
 class EmployeeList extends Component {
+
+
     componentWillMount() {
         // Fetch the employees
         this.props.employeesFetch();
@@ -24,15 +27,32 @@ class EmployeeList extends Component {
     }
 
     render() {
+        console.log(this.props.user.email);
+        const { textStyle } = styles;
         // Create a list of employees
         return (
-            <FlatList
-              data={this.props.employees}
-              renderItem={this.renderItem}
-            />
+            <View>
+                <CardSection>
+                    <Text style={textStyle}>Welcome {this.props.user.email}</Text>
+                </CardSection>
+
+                <FlatList
+                data={this.props.employees}
+                renderItem={this.renderItem}
+                />
+            </View>
         );
     };
 }
+
+const styles = {
+    textStyle: {
+        fontSize: 50,
+        flex: 1,
+        justifyContent: 'center',
+        textAlign: 'center'
+    }
+};
 
 /**
  * Maps state to this components props object
@@ -43,8 +63,8 @@ const mapStateToProps = (state) => {
     const employees = _.map(state.employees, (val, uid) => {
         return { ...val, uid };
     });
-
-    return { employees };
+    const { user } = state.auth;
+    return { employees, user };
 };
 
 // Connect EmployeeList Component to the Redux store

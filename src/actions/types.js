@@ -12,3 +12,5 @@ export const EMPLOYEES_FETCH_SUCCESS = 'employees_fetch_success';
 export const EMPLOYEE_SAVE_SUCCESS = "employee_save_success";
 export const EMPLOYEE_CLEAR = "employee_clear";
 export const EMPLOYEE_DELETE_SUCCESS = "employee_delete_success";
+export const LOGOUT_USER_SUCCESS = "logout_user_success";
+export const LOGOUT_USER_FAIL = "logout_user_fail";

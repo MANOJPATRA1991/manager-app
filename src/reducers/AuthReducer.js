@@ -3,7 +3,9 @@ import {
     PASSWORD_CHANGED,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
-    LOGIN_USER
+    LOGIN_USER,
+    LOGOUT_USER_SUCCESS,
+    LOGOUT_USER_FAIL
 } from '../actions/types';
 
 /**
@@ -42,6 +44,14 @@ export default (state=INITIAL_STATE, action) => {
                 error: 'Authentication failed',
                 password: '',
                 loading: false
+            };
+        // On user login success
+        case LOGOUT_USER_SUCCESS:
+            return INITIAL_STATE;
+        // On user login fail
+        case LOGOUT_USER_FAIL:
+            return { ...state, 
+                error: 'Logout failed. Check your connectivity to the internet.'
             };
         default:
             return state;

@@ -6,7 +6,9 @@ import {
     PASSWORD_CHANGED,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
-    LOGIN_USER
+    LOGIN_USER,
+    LOGOUT_USER_SUCCESS,
+    LOGOUT_USER_FAIL
 } from './types';
 
 /**
@@ -83,4 +85,25 @@ const loginUserSuccess = (dispatch, user) => {
  */
 const loginUserFail = (dispatch) => {
     dispatch({ type: LOGIN_USER_FAIL });
+}
+
+
+/**
+ * Log out current user
+ */
+export const logout = () => {
+    return (dispatch) => {
+        firebase.auth().signOut().then(function() {
+            // Sign-out successful.
+            dispatch({
+                type: LOGOUT_USER_SUCCESS
+            });
+            Actions.auth({ type: 'reset'});
+        }).catch(function(error) {
+            // An error happened.
+            dispatch({
+                type: LOGOUT_USER_FAIL
+            })
+        });
+    }
 }

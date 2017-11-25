@@ -1,44 +1,75 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import { Stack, Scene, Router, Actions } from 'react-native-router-flux';
 import LoginFrom from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
+import { logout } from './actions';
 
 /**
  * Functional Router Component
  */
-const RouterComponent = () => {
-    return (
-        <Router>
-            <Scene key="root" hideNavBar>
-                
-                <Scene key="auth">
-                    <Scene key="login" component={LoginFrom} title="Please Login" />    
-                </Scene>
-                
-                <Scene key="main">
+class RouterComponent extends Component {
+    
+    render() {
+        const { titleStyle } = styles;
+        return (
+            <Router>
+                <Scene key="root" hideNavBar>
                     
-                    <Scene initial key="employeeList" 
-                        component={EmployeeList} 
-                        title="Employees"
-                        rightTitle="Add"
-                        onLeft={() => null }
-                        onRight={() => Actions.employeeCreate()}  />
+                    <Scene key="auth">
+                        <Scene key="login" 
+                        component={LoginFrom} 
+                        title="Please Login" 
+                        titleStyle={titleStyle}/>    
+                    </Scene>
                     
-                    <Scene key="employeeCreate"
-                        component={EmployeeCreate}
-                        title="Create Employee" />
-
-                    <Scene key="employeeEdit"
-                        component={EmployeeEdit}
-                        title="Edit Employee" />
-
+                    <Scene key="main">
+                        
+                        <Scene initial key="employeeList" 
+                            component={EmployeeList} 
+                            title="Employees"
+                            titleStyle={titleStyle}
+                            leftTitle="Log out"
+                            rightTitle="Add"
+                            onLeft={() => this.props.logout() }
+                            onRight={() => Actions.employeeCreate()}  />
+                        
+                        <Scene key="employeeCreate"
+                            component={EmployeeCreate}
+                            title="Create Employee" 
+                            titleStyle={titleStyle}
+                            rightTitle="Empty"/>
+    
+                        <Scene key="employeeEdit"
+                            component={EmployeeEdit}
+                            title="Edit Employee" 
+                            titleStyle={titleStyle}
+                            rightTitle="Empty"/>
+    
+                    </Scene>
+    
                 </Scene>
 
-            </Scene>
-        </Router>
-    )
+            </Router>
+        );
+    }
 };
 
-export default RouterComponent;
+const styles = {
+    titleStyle: {
+        textAlign: 'right',
+        marginTop: 0,
+        marginBottom: 0,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        justifyContent: 'center'
+    }
+};
+
+// Connect LoginForm to Redux store
+export default connect(null, { 
+    logout
+})(RouterComponent);
