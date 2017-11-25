@@ -26,26 +26,45 @@ class EmployeeList extends Component {
         return <ListItem employee={item} />
     }
 
+    /**
+     * Renders employees in a list
+     */
+    renderEmployees(style) {
+        if (this.props.employees.length === 0) {
+            return (
+                <CardSection>
+                    <Text style={style}> No employee found.</Text>
+                </CardSection>
+            );
+        } else {
+            return (
+                <FlatList style={style}
+                data={this.props.employees}
+                renderItem={this.renderItem}
+                />
+            );
+        }
+    }
+
     render() {
-        console.log(this.props.user.email);
-        const { textStyle } = styles;
+        const { textStyle, employee } = styles;
         // Create a list of employees
         return (
             <View>
                 <CardSection>
-                    <Text style={textStyle}>Welcome {this.props.user.email}</Text>
+                    <Text style={textStyle}>{`Welcome\n${this.props.user.displayName}`}</Text>
                 </CardSection>
-
-                <FlatList
-                data={this.props.employees}
-                renderItem={this.renderItem}
-                />
+                
+                {this.renderEmployees(employee)}
             </View>
         );
     };
 }
 
 const styles = {
+    employee: {
+        fontSize: 20
+    },
     textStyle: {
         fontSize: 50,
         flex: 1,
@@ -63,6 +82,7 @@ const mapStateToProps = (state) => {
     const employees = _.map(state.employees, (val, uid) => {
         return { ...val, uid };
     });
+    // Get logged in user
     const { user } = state.auth;
     return { employees, user };
 };

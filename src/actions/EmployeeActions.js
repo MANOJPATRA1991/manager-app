@@ -62,6 +62,7 @@ export const employeesFetch = () => {
 
 /**
  * Update and save existing employee data
+ * @param {Object} : An object with employee's name, phone, shift and uid
  */
 export const employeeSave = ({ name, phone, shift, uid }) => {
     // Get current user from firebase authentication

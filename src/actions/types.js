@@ -14,3 +14,6 @@ export const EMPLOYEE_CLEAR = "employee_clear";
 export const EMPLOYEE_DELETE_SUCCESS = "employee_delete_success";
 export const LOGOUT_USER_SUCCESS = "logout_user_success";
 export const LOGOUT_USER_FAIL = "logout_user_fail";
+export const USER_UPDATE = "user_update";
+export const UPDATE_USER_NAME_SUCCESS = "update_user_name_success";
+export const UPDATE_USER_NAME_FAIL = "update_user_name_fail";

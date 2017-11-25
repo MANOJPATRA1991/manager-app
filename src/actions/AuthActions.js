@@ -8,7 +8,10 @@ import {
     LOGIN_USER_FAIL,
     LOGIN_USER,
     LOGOUT_USER_SUCCESS,
-    LOGOUT_USER_FAIL
+    LOGOUT_USER_FAIL,
+    USER_UPDATE,
+    UPDATE_USER_NAME_SUCCESS,
+    UPDATE_USER_NAME_FAIL
 } from './types';
 
 /**
@@ -75,7 +78,12 @@ const loginUserSuccess = (dispatch, user) => {
         payload: user
     });
 
-    Actions.main();
+    if (user.displayName) {
+        console.log(user);
+        Actions.main();
+    } else {
+        Actions.details();
+    }
 };
 
 /**
@@ -87,6 +95,43 @@ const loginUserFail = (dispatch) => {
     dispatch({ type: LOGIN_USER_FAIL });
 }
 
+/**
+ * Updates user data in the state
+ * @param {Object} : An object with prop and value keys
+ * @returns Action object
+ */
+export const userUpdate = ({ prop, value }) => {
+    return {
+        type: USER_UPDATE,
+        payload: { prop, value }
+    };
+};
+
+/**
+ * Save updated user to the firebase database
+ */
+export const saveUser = (name) => {
+    // Get current user from firebase authentication
+    const { currentUser }= firebase.auth();
+    
+    return (dispatch) => {
+        currentUser.updateProfile({
+            displayName: name
+        }).then(function() {
+            // Update successful.
+            dispatch({
+                type: UPDATE_USER_NAME_SUCCESS,
+                payload: currentUser
+            });
+            Actions.main();
+        }).catch(function(error) {
+            // An error happened.
+            dispatch({
+                type: UPDATE_USER_NAME_FAIL
+            })
+        });
+    }
+}
 
 /**
  * Log out current user

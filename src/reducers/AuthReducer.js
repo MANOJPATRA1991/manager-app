@@ -5,7 +5,10 @@ import {
     LOGIN_USER_FAIL,
     LOGIN_USER,
     LOGOUT_USER_SUCCESS,
-    LOGOUT_USER_FAIL
+    LOGOUT_USER_FAIL,
+    USER_UPDATE,
+    UPDATE_USER_NAME_SUCCESS,
+    UPDATE_USER_NAME_FAIL
 } from '../actions/types';
 
 /**
@@ -16,6 +19,7 @@ const INITIAL_STATE = {
     password: '',
     user: '',
     error: '',
+    name: '',
     loading: false
 };
 
@@ -53,6 +57,20 @@ export default (state=INITIAL_STATE, action) => {
             return { ...state, 
                 error: 'Logout failed. Check your connectivity to the internet.'
             };
+        // On update of user form fields
+        case USER_UPDATE:
+            // key interpolation
+            return { ...state, 
+                [action.payload.prop]: action.payload.value };
+        // On successful update of user name
+        case UPDATE_USER_NAME_SUCCESS:
+            return { ...state, 
+                user: action.payload };
+        // On failure of user name update
+        case UPDATE_USER_NAME_FAIL:
+        return { ...state, 
+            error: 'Cannot update username. Check your connectivity to the internet.'
+        };
         default:
             return state;
     }

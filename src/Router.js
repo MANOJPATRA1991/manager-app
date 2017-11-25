@@ -6,6 +6,7 @@ import LoginFrom from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
+import UserDetails from './components/UserDetails';
 import { logout } from './actions';
 
 /**
@@ -24,6 +25,13 @@ class RouterComponent extends Component {
                         component={LoginFrom} 
                         title="Please Login" 
                         titleStyle={titleStyle}/>    
+                    </Scene>
+
+                    <Scene key="details">
+                        <Scene initial key="userDetails" 
+                            component={UserDetails} 
+                            title="Your Details"
+                            titleStyle={titleStyle}/>
                     </Scene>
                     
                     <Scene key="main">
